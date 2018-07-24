@@ -42,7 +42,7 @@ int main(){
         cout << "Item[" << i << "]: " << item[i] << endl;
     }
     
-    cout << "Tempo de execução do código: " << elapsed.count() << " s\n";
+    cout << "Tempo de execução do algoritmo: " << elapsed.count() << " s\n";
 
     return 0;
 }
