@@ -57,7 +57,7 @@ void merge(vector<int> &item, int inicioIndex, int indexCentro, int fimIndex){
 
 void mergeSort(vector<int> &item, int inicioIndex, int fimIndex){
     int indexCentro;
-    cout << "TESTE" << endl;
+
     if (inicioIndex < fimIndex){
         indexCentro = floor((inicioIndex + fimIndex) / 2);
         mergeSort(item, inicioIndex, indexCentro);
