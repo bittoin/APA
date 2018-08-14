@@ -36,7 +36,7 @@ void merge(vector<int> &item, int inicioIndex, int indexCentro, int fimIndex){
                 limiteEsq = true;
             if (dirIndex > fimIndex)
                 limiteDir = true;
-        }{
+        }else{
             if(!limiteEsq){
                 itemTemp[i] = item[esqIndex];
                 esqIndex++;
