@@ -38,9 +38,6 @@ void countingSort(vector<int> &item, vector<int> &novoArray){
         itemAux[i] += itemAux[i-1];
     }
  
-    //Criado para representar o vector "B" que armazena os valores ordenados
-    //vector<int> novoArray(item.size()); 
-
     //Atribui valores ordenados no vector "B" secundário
     for (int i = item.size(); i >= 0; --i){
         novoArray[itemAux[item[i]] - 1] = item[i];
