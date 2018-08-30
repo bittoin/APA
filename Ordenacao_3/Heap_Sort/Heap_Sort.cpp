@@ -38,23 +38,17 @@ void MaxHeapify(vector<int> &item, int tamanho, int index){
     }
     
 }
-/*
-void BuildMaxHeap(vector<int> &item){
-    int tamanho_heap = item.size();
-    int lim = floor(item.size()/2) - 1;
-    for(int i = lim; i >= 0; i--){
-        MaxHeapify(item, i);
-    }
-}
-*/
 
-void heapSort(vector<int> &item, int tam){
-    //BuildMaxHeap temporário dentro da função
+void BuildMaxHeap(vector<int> &item){
     int lim = floor(item.size()/2) - 1;
     for(int i = lim; i >= 0; i--){
         MaxHeapify(item, item.size(), i);
     }
+}
 
+
+void heapSort(vector<int> &item, int tam){
+    BuildMaxHeap(item);
     //Depois que faz a troca, diminui o tamanho do array
     for (int i = item.size() - 1; i >= 0; i--)
 	{
@@ -66,8 +60,8 @@ void heapSort(vector<int> &item, int tam){
 }
 
 int main(){
-    vector<int> item = {5, 4, 90, 70, 18, 0, 1, 900, 25, 43, 51, 13, 200, 151, 0, 45, 1045, 0}; /* Apenas valores positivos */
-    //vector<int> item = {5, 4, 90, -3, 70, 18, 0, 1, -400, 900, 25, 43, 51, 13, -6, -14, 200, 151, -9, 0, 45, 1045, 0, -553}; /* Caso com negativos */
+    //vector<int> item = {5, 4, 90, 70, 18, 0, 1, 900, 25, 43, 51, 13, 200, 151, 0, 45, 1045, 0}; /* Apenas valores positivos */
+    vector<int> item = {5, 4, 90, -3, 70, 18, 0, 1, -400, 900, 25, 43, 51, 13, -6, -14, 200, 151, -9, 0, 45, 1045, 0, -553}; /* Caso com negativos */
     //vector<int> item = {5, 1, 0, 10, 3, 0, 7, 2}; /* Apenas valores positivos */
 
     heapSort(item, item.size());
