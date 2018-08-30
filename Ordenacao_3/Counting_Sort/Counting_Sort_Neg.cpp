@@ -18,6 +18,7 @@ void exibeItens(vector<int> &item){
 }
 
 void countingSort(vector<int> &item, vector<int> &novoArray){
+    //Inicializa variáveis que armazenarão o maior e menor número do array
     int maiorNum = 0;
     int menorNum = 0;
 
