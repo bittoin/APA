@@ -2,15 +2,15 @@
 #include <vector>
 #include <fstream>
 #include <string>
-#include "aresta.cpp"
+#include "aresta.h"
 
 using namespace std;
 
 int main()
 {
-    //ifstream arq_matriz("instancias_teste/dij10.txt", ios::in);
+    ifstream arq_matriz("instancias_teste/dij10.txt", ios::in);
     //ifstream arq_matriz("instancias_teste/dij20.txt", ios::in);
-    ifstream arq_matriz("instancias_teste/dij40.txt", ios::in);
+    //ifstream arq_matriz("instancias_teste/dij40.txt", ios::in);
     //ifstream arq_matriz("instancias_teste/dij50.txt", ios::in);
 
     int tam_matriz;
@@ -46,6 +46,10 @@ int main()
             pivoIndex--;
         }
     }
+
+    /*for (int i = 0; i < aresta.size(); i++){
+        cout << i << " >> " << "[" << aresta[i].v1 << "]" << "[" << aresta[i].v2 << "]" << " = " << aresta[i].peso << endl;
+    }*/
 
     //CRIA VECTOR COM IDENTIFICADORES PARA AS ÁRVORES
     vector<int> arvoreID(tam_matriz);
@@ -98,10 +102,10 @@ int main()
         }
     }
 
-
     //IMPRIME NA TELA O VECTOR DE ARESTAS MST
     for (unsigned int i = 0; i < MST.size(); i++){
         cout << i << " >> " << "[" << MST[i].v1 << "]" << "[" << MST[i].v2 << "]" << " = " << MST[i].peso << endl;
+        somaPesos += MST[i].peso;
     }
 
     return 0;
