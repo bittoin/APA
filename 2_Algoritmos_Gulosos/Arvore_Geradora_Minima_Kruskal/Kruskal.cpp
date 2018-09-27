@@ -46,9 +46,9 @@ int main()
         }
     }
 
-    for (unsigned int i = 0; i < aresta.size(); i++){
+    /*for (unsigned int i = 0; i < aresta.size(); i++){
         cout << i << " >> " << "[" << aresta[i].v1 << "]" << "[" << aresta[i].v2 << "]" << " = " << aresta[i].peso << endl;
-    }
+    }*/
 
     //CRIA VECTOR COM IDENTIFICADORES PARA AS ÁRVORES
     vector<int> arvoreID(tam_matriz);
