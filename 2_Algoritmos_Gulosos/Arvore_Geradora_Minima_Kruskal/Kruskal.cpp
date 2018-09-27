@@ -60,26 +60,6 @@ int main()
     //Cria vector de arestas onde serão armazenados os vértices da arvore geradora mínima
     vector<Aresta> MST;
 
-    //int cont_arestas = 0;
-    //VERIFICA A SEGURANÇA DAS ARESTAS E ADICIONA NA ÁRVORE DA ÁRVORE GERADORA MÍNIMA
-    /*while (MST.size() < tam_matriz - 1){
-        for (int i = 0; i < aresta.size(); i++){
-            if (arvoreID[aresta[i].v1] != arvoreID[aresta[i].v2]){
-                MST.push_back(aresta[i]);
-
-                for (int j = 0; j < tam_matriz; j++){
-                    if (arvoreID[j] == aresta[i].v2)
-                        arvoreID[j] = aresta[i].v1;
-                }
-                break;
-                //arvoreID[aresta[i].v2] = arvoreID[aresta[i].v1];
-                cont_arestas++;
-            }else{
-                continue;
-            }
-        }
-    }*/
-
     /*for (int i = 0; i < aresta.size(); i++){
         if (arvoreID[aresta[i].v1] != arvoreID[aresta[i].v2]){
 
