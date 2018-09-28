@@ -46,10 +46,6 @@ int main()
         }
     }
 
-    /*for (unsigned int i = 0; i < aresta.size(); i++){
-        cout << i << " >> " << "[" << aresta[i].v1 << "]" << "[" << aresta[i].v2 << "]" << " = " << aresta[i].peso << endl;
-    }*/
-
     //CRIA VECTOR COM IDENTIFICADORES PARA AS ÁRVORES
     vector<int> arvoreID(tam_matriz);
     for (int i = 0; i < tam_matriz; i++){
@@ -57,11 +53,10 @@ int main()
     }
 
     //Cria vector de arestas onde serão armazenados os vértices da arvore geradora mínima
-    vector<Aresta> MST;
+    vector<Aresta> MST; 
 
     for (unsigned int i = 0; i < aresta.size(); i++){
         if (arvoreID[aresta[i].v1] != arvoreID[aresta[i].v2]){
-            //arvoreID[aresta[i].v2] = arvoreID[aresta[i].v1];
             
             for (int j = 0; j < tam_matriz; j++){
                 if (arvoreID[j] == aresta[i].v2)
@@ -73,13 +68,6 @@ int main()
                 break;
         }
     }
-
-    /*for (unsigned int i = 0; i < aresta.size(); i++){
-        if (arvoreID[aresta[i].v2] == -1){
-            MST.push_back(aresta[i]);
-            arvoreID[aresta[i].v2] = aresta[i].v2;
-        }
-    }*/
 
     int soma = 0;
     //IMPRIME NA TELA O VECTOR DE ARESTAS MST
