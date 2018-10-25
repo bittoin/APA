@@ -77,7 +77,7 @@ int main(int argc, char const *argv[])
     // ifstream mochila("instancias/mochila02.txt.txt", ios::in);
     // ifstream mochila("instancias/mochila1000.txt.txt", ios::in);
     // ifstream mochila("instancias/mochila2500.txt.txt", ios::in);
-     ifstream mochila("instancias/mochila5000.txt.txt", ios::in);
+    ifstream mochila("instancias/mochila5000.txt.txt", ios::in);
 
     //Lê as duas primeiras linhas do arquivo que dizem respeito a quantidade de objetos e capacidade da mochila
     int qnt_obj, capacidade;
