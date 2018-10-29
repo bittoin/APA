@@ -164,9 +164,38 @@ int melhorVInicial(struct matriz x, int* solucao){
 }
 
 void VND(struct matriz x, int* solucao){
-    cout << "CUSTO DE ENTRADA NO SWAP: " << custo(x, solucao) << endl;
+    /*cout << "CUSTO DE ENTRADA NO SWAP: " << custo(x, solucao) << endl;
 	swap(x, solucao);
 	cout << "CUSTO DE SAIDA NO SWAP: "<< custo(x, solucao) << endl;
 	opt_2(x, solucao);
-	cout << "CUSTO DE SAIDA NO 2-OPT: "<< custo(x, solucao) << endl;
+	cout << "CUSTO DE SAIDA NO 2-OPT: "<< custo(x, solucao) << endl;*/
+
+    int numEstruturas = 2;
+	int i = 1;
+	int custoAtual = custo(x, solucao);
+	int custoAnterior;
+	int *solucaoTemp = new int[x.numero_elementos + 1];
+	copia_percurso(x, solucao, solucaoTemp);
+    cout << "CUSTO DE ENTRADA: " << custo(x, solucao) << endl;
+
+	while(i <= numEstruturas){
+		if(i == 1){
+			swap(x, solucaoTemp);
+			custoAtual = custo(x, solucaoTemp);
+			custoAnterior =  custo(x,solucao);
+		}else if( i == 2){
+			opt_2(x, solucao);
+			custoAtual = custo(x, solucaoTemp);
+			custoAnterior =  custo(x,solucao);
+		}
+
+		if(custoAtual > custoAnterior){
+            copia_percurso(x, solucaoTemp, solucao);
+			i = 1;
+		}else{
+			i++;
+		}
+	}
+
+    cout << "CUSTO DE SAIDA: " << custo(x, solucaoTemp) << endl;
 }

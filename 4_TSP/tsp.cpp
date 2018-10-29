@@ -9,8 +9,8 @@ int main(void){
 
 		//--Instâncias com o triangulo superior--
 	//ifstream arquivo("instancias/brazil58.tsp", ios::in);
-	ifstream arquivo("instancias/si175.tsp", ios::in);
-	//ifstream arquivo("instancias/si535.tsp", ios::in);
+	//ifstream arquivo("instancias/si175.tsp", ios::in);
+	ifstream arquivo("instancias/si535.tsp", ios::in);
 	//ifstream arquivo("instancias/si1032.tsp", ios::in);
 
 		//--Instâncias com o triangulo inferior--
@@ -18,7 +18,6 @@ int main(void){
 	//ifstream arquivo("instancias/brg180.tsp", ios::in);
 	//ifstream arquivo("instancias/dantzig42.tsp", ios::in);
 	//ifstream arquivo("instancias/fri26.tsp", ios::in); //nao adicionada ainda
-	//ifstream arquivo("instancias/dantzig42.tsp", ios::in);
 	//ifstream arquivo("instancias/gr17.tsp", ios::in); //nao adicionada ainda
 	//ifstream arquivo("instancias/gr21.tsp", ios::in); //nao adicionada ainda
 	//ifstream arquivo("instancias/gr24.tsp", ios::in); //nao adicionada ainda
@@ -52,16 +51,11 @@ int main(void){
 	}
 	
 	int *solucao = new int[x.numero_elementos + 1];
-	int *solucaoTemp = new int[x.numero_elementos + 1];
 
 	melhor = melhorVInicial(x, solucao);
 
 	vizinho(x, solucao, melhor);
 	
 	VND(x, solucao);
-	/*cout << "CUSTO DE ENTRADA NO SWAP: " << custo(x, solucao) << endl;
-	swap(x, solucao);
-	cout << "CUSTO DE SAIDA NO SWAP: "<< custo(x, solucao) << endl;
-	opt_2(x, solucao);
-	cout << "CUSTO DE SAIDA NO 2-OPT: "<< custo(x, solucao) << endl;*/
+
 }
