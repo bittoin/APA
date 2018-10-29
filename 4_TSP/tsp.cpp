@@ -1,6 +1,7 @@
 #include <iostream>
 #include <climits>
 #include <fstream>
+#include <string>
 #define TRUE 1
 #define FALSE 0
 #define NUM_ALTO 999999
@@ -35,6 +36,35 @@ void imprimir_percurso(int n, int* percurso) {
     cout << endl;
 }
 
+/*void vizinho(struct matriz x, int* percurso, int vInit){
+	int elem_adicionados[x.numero_elementos];
+
+	for(int i = 0; i < x.numero_elementos; i++){
+		elem_adicionados[i] = FALSE;
+	}
+
+	elem_adicionados[vInit] = TRUE;
+	percurso[0] = vInit;
+
+	for(int i = 0; i < x.numero_elementos; i++){
+		int ref = NUM_ALTO;
+		int vizinho_escolhido = 0;
+
+		for(int j = 0; j < x.numero_elementos; j++){
+			if(!elem_adicionados[j] && ref > x.elementos[i][j]){
+				ref = x.elementos[i][j];
+				vizinho_escolhido = j;
+			}
+		}
+		percurso[i + 1] = vizinho_escolhido;
+		cout << vizinho_escolhido << endl;
+		elem_adicionados[vizinho_escolhido] = TRUE;
+	}
+
+	percurso[x.numero_elementos] = vInit;
+
+}*/
+
 void vizinho(struct matriz x, int* percurso, int vInit){
 	int elem_adicionados[x.numero_elementos];
 
@@ -67,7 +97,6 @@ int custo(struct matriz x, int* percurso){
 
 	for(int i = 0; i < x.numero_elementos; i++){
 		custo = custo + x.elementos[percurso[i]][percurso[i + 1]];
-		//cout << "[" << percurso[i] << "][" << percurso[i+1] << "] " << "custo" << custo << "     ";  
 	}
 
 	return custo;
@@ -83,16 +112,7 @@ void inverteArray(matriz x, int *solucao, int limInferior, int limSuperior){
 	for (int i = limInferior, j = limSuperior; i <= limSuperior; i++, j--){
 		solucao[i] = arrayTemp[j];
 	}
-
-
-	for (int i = 0; i < x.numero_elementos + 1; i++){
-		cout << solucao[i] << " ";
-	}
 	
-	if (limInferior == 0)
-		solucao[x.numero_elementos] = arrayTemp[limSuperior];
-	// else if (limSuperior == x.numero_elementos)
-	// 	solucao[x.numero_elementos] = arrayTemp[limInferior];
 }
 
 void opt_2(struct matriz x, int* solucao){
@@ -106,16 +126,6 @@ void opt_2(struct matriz x, int* solucao){
 		solucaoSaida[i] = solucao[i];
 	}
 
-	//solucaoTemporaria = solucao;
-	//solucaoSaida = solucao;
-
-
-	// cout << "\n\n\n";
-	// imprimir_percurso(x.numero_elementos+1, solucaoTemporaria);
-	// //cout << custo(x, solucaoTemporaria) << endl;
-	// inverteArray(x, solucaoTemporaria, 1, 3);
-	// //imprimir_percurso(x.numero_elementos+1, solucaoTemporaria);
-	// cout << custo(x, solucaoTemporaria) << endl;
 	cout << ">>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>" << mCusto_atual << ">>>>>>>>>>>>>>>>" << custo(x, solucaoSaida) << endl;
 	for (int i = 1; i < x.numero_elementos - 2; i++){
 		for (int j = 2; j < x.numero_elementos; j++){
@@ -123,9 +133,9 @@ void opt_2(struct matriz x, int* solucao){
 				solucaoTemporaria[k] = solucao[k];
 			}
 			inverteArray(x, solucaoTemporaria, i, j);			
-			cout << "Custo das iterações: " << custo(x, solucaoTemporaria) << endl;
+			//cout << "Custo das iterações: " << custo(x, solucaoTemporaria) << endl;
 			if (mCusto_atual > custo(x, solucaoTemporaria)){
-				cout << "entrei " << mCusto_atual << " comparado a " << custo(x, solucaoTemporaria) << endl;
+				//cout << "entrei " << mCusto_atual << " comparado a " << custo(x, solucaoTemporaria) << endl;
 				mCusto_atual = custo(x, solucaoTemporaria);
 				for (int k = 0; k < x.numero_elementos+1; k++){
 					solucaoSaida[k] = solucaoTemporaria[k];
@@ -179,19 +189,39 @@ void swap(struct matriz x, int* solucao, int* melhorConjunto){
 int main(void){
 	struct matriz x;
  	//Leitura do arquivo
-	std::ifstream arquivo("pcv20.txt", std::ios::in);
+	//ifstream arquivo("instancias/pcv10.txt", ios::in);
+	//ifstream arquivo("instancias/brazil58.tsp", ios::in);
+	//ifstream arquivo("instancias/si175.tsp", ios::in);
+	//ifstream arquivo("instancias/si535.tsp", ios::in);
+	ifstream arquivo("instancias/gr21.tsp", ios::in);
+	string temp;
 
+	while (temp.compare("DIMENSION") != 0 && temp.compare("DIMENSION:") != 0){
+		arquivo >> temp;
+	}
 	arquivo >> x.numero_elementos;
 
-	x.elementos = new int*[x.numero_elementos];
-
-	for(int i = 0 ; i < x.numero_elementos; i++){
-		x.elementos[i] = new int[x.numero_elementos];
-		for(int j = 0; j < x.numero_elementos; j++){
-			arquivo >> x.elementos[i][j];
-		}
+	while (temp.compare("EDGE_WEIGHT_SECTION") != 0 && temp.compare("EDGE_WEIGHT_SECTION:") != 0){
+		arquivo >> temp;
 	}
 
+	//INICIALIZA MATRIZ ADJACÊNCIA
+	x.elementos = new int*[x.numero_elementos];
+	for(int i = 0; i < x.numero_elementos; i++){
+		x.elementos[i] = new int[x.numero_elementos];
+	}
+
+	cout << "Valor do número de elementos: " << x.numero_elementos << endl;
+
+	for(int i = 0; i < x.numero_elementos; i++){
+		for(int j = 0; j < x.numero_elementos; j++){
+			arquivo >> temp;
+			x.elementos[i][j] = atoi(temp.c_str());
+			//x.elementos[j][i] = x.elementos[i][j];
+			//cout << x.elementos[i][j] << endl;
+		}
+	}
+	
 	int *solucao = new int[x.numero_elementos + 1];
 
 	//Exibe as soluções com variação no vértice inicial
@@ -199,19 +229,25 @@ int main(void){
 	for (int i = 0; i < x.numero_elementos; i++){
 		vizinho(x, solucao, i);
 
-		cout << "Solucao inicial: " << endl;
-		imprimir_percurso(x.numero_elementos + 1, solucao);
-
 		int custo_solucao = custo(x, solucao);
-		cout << "Custo da solucao: " << custo_solucao << endl;
+		//cout << "Custo da solucao: " << custo_solucao << endl;
 		if (ref > custo_solucao){
 			melhor = i;
 			ref = custo_solucao;
 		}
 	}
 
+
 	int *melhorConjunto = new int[x.numero_elementos + 1];
 	vizinho(x, solucao, melhor);
-	swap(x, solucao, melhorConjunto);	
+
+	imprimir_percurso(x.numero_elementos+1, solucao);
+	//cout << "CUSTO DE ENTRADA NO SWAP: " << custo(x, solucao) << endl;
+	imprimir_percurso(x.numero_elementos+1, solucao);
+	swap(x, solucao, melhorConjunto);
+	imprimir_percurso(x.numero_elementos+1, melhorConjunto);
+	cout << "      CUSTO DE SAIDA NO SWAP: "<< custo(x, melhorConjunto) << endl;
 	opt_2(x, melhorConjunto);
+	imprimir_percurso(x.numero_elementos+1, melhorConjunto);
+	imprimir_matriz(x);
 }
