@@ -5,15 +5,25 @@ int main(void){
 
 	int melhor; //Armazena melhor índice em relação ao vértice inicial
 
- 	//--------LEITURA DAS INSTÂNCIAS--------
-	//ifstream arquivo("instancias/pcv10.txt", ios::in);
+ 	//---------------LEITURA DAS INSTÂNCIAS---------------
+
+		//--Instâncias com o triangulo superior--
 	//ifstream arquivo("instancias/brazil58.tsp", ios::in);
-	//ifstream arquivo("instancias/si175.tsp", ios::in);
-	ifstream arquivo("instancias/si535.tsp", ios::in);
+	ifstream arquivo("instancias/si175.tsp", ios::in);
+	//ifstream arquivo("instancias/si535.tsp", ios::in);
+	//ifstream arquivo("instancias/si1032.tsp", ios::in);
+
+		//--Instâncias com o triangulo inferior--
 	//ifstream arquivo("instancias/swiss42.tsp", ios::in);
 	//ifstream arquivo("instancias/brg180.tsp", ios::in);
-	//ifstream arquivo("instancias/dantzig42.tsp", ios::in); //Lower
-	//ifstream arquivo("instancias/si1032.tsp", ios::in);
+	//ifstream arquivo("instancias/dantzig42.tsp", ios::in);
+	//ifstream arquivo("instancias/fri26.tsp", ios::in); //nao adicionada ainda
+	//ifstream arquivo("instancias/dantzig42.tsp", ios::in);
+	//ifstream arquivo("instancias/gr17.tsp", ios::in); //nao adicionada ainda
+	//ifstream arquivo("instancias/gr21.tsp", ios::in); //nao adicionada ainda
+	//ifstream arquivo("instancias/gr24.tsp", ios::in); //nao adicionada ainda
+	//ifstream arquivo("instancias/gr48.tsp", ios::in); //nao adicionada ainda
+	//ifstream arquivo("instancias/gr96.tsp", ios::in); //nao adicionada ainda
 	
 	string temp;
 
@@ -48,10 +58,10 @@ int main(void){
 
 	vizinho(x, solucao, melhor);
 	
-	//VND(x, solucao);
-	cout << "CUSTO DE ENTRADA NO SWAP: " << custo(x, solucao) << endl;
+	VND(x, solucao);
+	/*cout << "CUSTO DE ENTRADA NO SWAP: " << custo(x, solucao) << endl;
 	swap(x, solucao);
 	cout << "CUSTO DE SAIDA NO SWAP: "<< custo(x, solucao) << endl;
 	opt_2(x, solucao);
-	cout << "CUSTO DE SAIDA NO 2-OPT: "<< custo(x, solucao) << endl;
+	cout << "CUSTO DE SAIDA NO 2-OPT: "<< custo(x, solucao) << endl;*/
 }
