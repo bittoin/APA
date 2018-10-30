@@ -7,8 +7,14 @@ int main(void){
 
  	//---------------LEITURA DAS INSTÂNCIAS---------------
 
+		//--Instâncias da tsp matriz completa--
+	//ifstream arquivo("instancias/pcv04.txt", ios::in);
+	//ifstream arquivo("instancias/pcv10.txt", ios::in);
+	ifstream arquivo("instancias/pcv20.txt", ios::in);
+	//ifstream arquivo("instancias/pcv50.txt", ios::in);
+
 		//--Instâncias com o triangulo superior--
-	ifstream arquivo("instancias/brazil58.tsp", ios::in);
+	//ifstream arquivo("instancias/brazil58.tsp", ios::in);
 	//ifstream arquivo("instancias/si175.tsp", ios::in);
 	//ifstream arquivo("instancias/si535.tsp", ios::in);
 	//ifstream arquivo("instancias/si1032.tsp", ios::in);
@@ -26,14 +32,14 @@ int main(void){
 	
 	string temp;
 
-	while (temp.compare("DIMENSION") != 0 && temp.compare("DIMENSION:") != 0){
-		arquivo >> temp;
-	}
+	// while (temp.compare("DIMENSION") != 0 && temp.compare("DIMENSION:") != 0){
+	// 	arquivo >> temp;
+	// }
 	arquivo >> x.numero_elementos;
 
-	while (temp.compare("EDGE_WEIGHT_SECTION") != 0 && temp.compare("EDGE_WEIGHT_SECTION:") != 0){
-		arquivo >> temp;
-	}
+	// while (temp.compare("EDGE_WEIGHT_SECTION") != 0 && temp.compare("EDGE_WEIGHT_SECTION:") != 0){
+	// 	arquivo >> temp;
+	// }
 
 	//INICIALIZA MATRIZ ADJACÊNCIA
 	x.elementos = new int*[x.numero_elementos];
@@ -43,32 +49,29 @@ int main(void){
 
 	cout << "Valor do número de elementos: " << x.numero_elementos << endl;
 
-	// for(int i = 0; i < x.numero_elementos; i++){
-	// 	for(int j = i; j < x.numero_elementos; j++){
-	// 		if (i == j)
-	// 			continue;
-	// 		arquivo >> temp;
-	// 		x.elementos[i][j] = atoi(temp.c_str());
-	// 	}
-	// }
-
+	// LEITURA DOS ARQUIVOS PCV
 	for(int i = 0; i < x.numero_elementos; i++){
-		for(int j = x.numero_elementos; j > i+1; j--){
-			if (i == j)
-				continue;
+		for(int j = 0; j < x.numero_elementos; j++){
 			arquivo >> temp;
-			//cout << temp;
 			x.elementos[i][j] = atoi(temp.c_str());
-			cout << x.elementos[i][j] << endl;
 		}
 	}
-	
+
+	// // LÊ MATRIZ DA TSP LIB
+	// for(int i = 0; i < x.numero_elementos+2; i++){
+	// 	for(int j = x.numero_elementos; j > i+1; j--){
+	// 		arquivo >> temp;
+	// 		x.elementos[i][j] = atoi(temp.c_str());
+	// 		cout << x.elementos[i][j] << endl;
+	// 	}
+	// } // TERMINA LEITURA DOS ARQUIVOS
+
 	int *solucao = new int[x.numero_elementos + 1];
 
-	//melhor = melhorVInicial(x, solucao);
+	melhor = melhorVInicial(x, solucao);
 
 	vizinho(x, solucao, 0);
 	
 	VND(x, solucao);
-
+	//imprimir_matriz(x);
 }

@@ -35,7 +35,7 @@ void vizinho(struct matriz x, int* percurso, int vInit){
 		int ref = NUM_ALTO;
 		int vizinho_escolhido = 0;
 
-		for(int j = x.numero_elementos; j > i+1; j--){
+		for(int j = 0; j < x.numero_elementos; j++){
 			if(!elem_adicionados[j] && ref > x.elementos[i][j]){
 				ref = x.elementos[i][j];
 				vizinho_escolhido = j;
@@ -149,6 +149,7 @@ int melhorVInicial(struct matriz x, int* solucao){
     int melhorVInicial;
     //Exibe as soluções com variação no vértice inicial
 	int ref = NUM_ALTO;
+	
 	for (int i = 0; i < x.numero_elementos; i++){
 		vizinho(x, solucao, i);
 
@@ -170,7 +171,8 @@ void VND(struct matriz x, int* solucao){
 	opt_2(x, solucao);
 	cout << "CUSTO DE SAIDA NO 2-OPT: "<< custo(x, solucao) << endl;*/
 
-    int numDescidas = 2, i = 0;
+	//PARA NUMDESCIDAS = 1, MÉTODO DA PRIMEIRA MELHORA
+    int numDescidas = 1, i =0;
 	int iteraSwap = 0, iteraOpt = 0;
 	int menorCusto = custo(x, solucao);
 	int custoAnterior;
