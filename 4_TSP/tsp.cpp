@@ -8,9 +8,9 @@ int main(void){
  	//---------------LEITURA DAS INSTÂNCIAS---------------
 
 		//--Instâncias com o triangulo superior--
-	//ifstream arquivo("instancias/brazil58.tsp", ios::in);
+	ifstream arquivo("instancias/brazil58.tsp", ios::in);
 	//ifstream arquivo("instancias/si175.tsp", ios::in);
-	ifstream arquivo("instancias/si535.tsp", ios::in);
+	//ifstream arquivo("instancias/si535.tsp", ios::in);
 	//ifstream arquivo("instancias/si1032.tsp", ios::in);
 
 		//--Instâncias com o triangulo inferior--
@@ -52,9 +52,9 @@ int main(void){
 	
 	int *solucao = new int[x.numero_elementos + 1];
 
-	melhor = melhorVInicial(x, solucao);
+	//melhor = melhorVInicial(x, solucao);
 
-	vizinho(x, solucao, melhor);
+	vizinho(x, solucao, 0);
 	
 	VND(x, solucao);
 

@@ -170,32 +170,38 @@ void VND(struct matriz x, int* solucao){
 	opt_2(x, solucao);
 	cout << "CUSTO DE SAIDA NO 2-OPT: "<< custo(x, solucao) << endl;*/
 
-    int numEstruturas = 2;
-	int i = 1;
-	int custoAtual = custo(x, solucao);
+    int numDescidas = 3, i = 0;
+	int iteraSwap = 0, iteraOpt = 0;
+	int menorCusto = custo(x, solucao);
 	int custoAnterior;
 	int *solucaoTemp = new int[x.numero_elementos + 1];
 	copia_percurso(x, solucao, solucaoTemp);
     cout << "CUSTO DE ENTRADA: " << custo(x, solucao) << endl;
 
-	while(i <= numEstruturas){
-		if(i == 1){
-			swap(x, solucaoTemp);
-			custoAtual = custo(x, solucaoTemp);
-			custoAnterior =  custo(x,solucao);
-		}else if( i == 2){
-			opt_2(x, solucao);
-			custoAtual = custo(x, solucaoTemp);
-			custoAnterior =  custo(x,solucao);
-		}
-
-		if(custoAtual > custoAnterior){
-            copia_percurso(x, solucaoTemp, solucao);
-			i = 1;
-		}else{
-			i++;
-		}
-	}
+    while(iteraSwap < numDescidas){
+        swap(x, solucaoTemp);
+        custoAnterior = custo(x, solucaoTemp);
+        if(menorCusto > custoAnterior){
+            menorCusto =  custo(x,solucaoTemp);
+            iteraSwap++;
+        }else{
+            iteraSwap = 0;
+        }
+        cout << "teste swap" << endl;
+    }
+    
+    menorCusto = custo(x, solucaoTemp);
+    while(iteraOpt < numDescidas){
+        opt_2(x, solucaoTemp);
+        custoAnterior = custo(x, solucaoTemp);
+        if(menorCusto > custoAnterior){
+            menorCusto = custo(x, solucaoTemp);
+            iteraOpt++;
+        }else{
+            iteraOpt = 0;
+        }
+        cout << "teste opt" << endl;
+    }
 
     cout << "CUSTO DE SAIDA: " << custo(x, solucaoTemp) << endl;
 }
