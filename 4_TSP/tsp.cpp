@@ -43,10 +43,23 @@ int main(void){
 
 	cout << "Valor do número de elementos: " << x.numero_elementos << endl;
 
+	// for(int i = 0; i < x.numero_elementos; i++){
+	// 	for(int j = i; j < x.numero_elementos; j++){
+	// 		if (i == j)
+	// 			continue;
+	// 		arquivo >> temp;
+	// 		x.elementos[i][j] = atoi(temp.c_str());
+	// 	}
+	// }
+
 	for(int i = 0; i < x.numero_elementos; i++){
-		for(int j = 0; j < x.numero_elementos; j++){
+		for(int j = x.numero_elementos; j > i+1; j--){
+			if (i == j)
+				continue;
 			arquivo >> temp;
+			//cout << temp;
 			x.elementos[i][j] = atoi(temp.c_str());
+			cout << x.elementos[i][j] << endl;
 		}
 	}
 	

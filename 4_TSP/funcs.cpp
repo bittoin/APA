@@ -35,7 +35,7 @@ void vizinho(struct matriz x, int* percurso, int vInit){
 		int ref = NUM_ALTO;
 		int vizinho_escolhido = 0;
 
-		for(int j = 0; j < x.numero_elementos; j++){
+		for(int j = x.numero_elementos; j > i+1; j--){
 			if(!elem_adicionados[j] && ref > x.elementos[i][j]){
 				ref = x.elementos[i][j];
 				vizinho_escolhido = j;
@@ -170,7 +170,7 @@ void VND(struct matriz x, int* solucao){
 	opt_2(x, solucao);
 	cout << "CUSTO DE SAIDA NO 2-OPT: "<< custo(x, solucao) << endl;*/
 
-    int numDescidas = 3, i = 0;
+    int numDescidas = 2, i = 0;
 	int iteraSwap = 0, iteraOpt = 0;
 	int menorCusto = custo(x, solucao);
 	int custoAnterior;
@@ -187,7 +187,7 @@ void VND(struct matriz x, int* solucao){
         }else{
             iteraSwap = 0;
         }
-        cout << "teste swap" << endl;
+        //cout << "teste swap" << endl;
     }
     
     menorCusto = custo(x, solucaoTemp);
@@ -200,8 +200,9 @@ void VND(struct matriz x, int* solucao){
         }else{
             iteraOpt = 0;
         }
-        cout << "teste opt" << endl;
+        //cout << "teste opt" << endl;
     }
 
     cout << "CUSTO DE SAIDA: " << custo(x, solucaoTemp) << endl;
+	imprimir_percurso(x.numero_elementos+1, solucaoTemp);
 }
