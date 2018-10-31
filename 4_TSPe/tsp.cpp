@@ -67,11 +67,13 @@ int main(void){
 	// } // TERMINA LEITURA DOS ARQUIVOS
 
 	int *solucao = new int[x.numero_elementos + 1];
+	int *solucaoFinal = new int[x.numero_elementos + 1];
 
 	melhor = melhorVInicial(x, solucao);
 
-	vizinho(x, solucao, melhor);
+	vizinho(x, solucao, 0);
 	
 	VND(x, solucao);
+	GRASP(x, solucao, x.numero_elementos, solucaoFinal);
 	//imprimir_matriz(x);
 }
