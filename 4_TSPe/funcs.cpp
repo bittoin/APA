@@ -172,7 +172,7 @@ void VND(struct matriz x, int* solucao){
 	cout << "CUSTO DE SAIDA NO 2-OPT: "<< custo(x, solucao) << endl;*/
 
 	//PARA NUMDESCIDAS = 1, MÉTODO DA PRIMEIRA MELHORA
-    int numDescidas = 1, i =0;
+    int numDescidas = 1;
 	int iteraSwap = 0, iteraOpt = 0;
 	int menorCusto = custo(x, solucao);
 	int custoAnterior;
@@ -239,8 +239,8 @@ void ordena_solucao(struct matriz x, int* solucaoInicial){
     for(int i = 0; i < x.numero_elementos ; i++){
         solucaoInicial[i] = lista[i].numV;
     }
-    printf("\nLista de melhores vertices: ");
-    imprimir_percurso(x.numero_elementos+1, solucaoInicial);
+    //printf("\nLista de melhores vertices: ");
+    //imprimir_percurso(x.numero_elementos+1, solucaoInicial);
 
     for(int i = 0; i < x.numero_elementos; i++){
         for(int j=i+1; j < x.numero_elementos; j++){
@@ -258,8 +258,8 @@ void ordena_solucao(struct matriz x, int* solucaoInicial){
     for(int i = 0; i < x.numero_elementos; i++){
         solucaoInicial[i] = lista[i].numV;
     }
-    printf("\nLista dos melhores vertices ordenada: ");
-    imprimir_percurso(x.numero_elementos+1, solucaoInicial);
+    //printf("\nLista dos melhores vertices ordenada: ");
+    //imprimir_percurso(x.numero_elementos+1, solucaoInicial);
 
 }
 
@@ -272,10 +272,10 @@ void construcaoLCR(struct matriz x, int* solucao, float alfa){
 
     ordena_solucao(x, solucao); 
     copia_percurso(x, solucao, solucaoTemp);
-    printf("\nSolucao inicial: ");
-    imprimir_percurso(x.numero_elementos+1, solucaoTemp);
+    //printf("\nSolucao inicial: ");
+    //imprimir_percurso(x.numero_elementos+1, solucaoTemp);
     int custoSolucaoTemp = custo(x, solucaoTemp);
-    printf("Custo: %d\n\n", custoSolucaoTemp);
+    //printf("Custo: %d\n\n", custoSolucaoTemp);
    
     for(int i = 0; i < x.numero_elementos; i++){
         if(numero > 1){
@@ -284,15 +284,15 @@ void construcaoLCR(struct matriz x, int* solucao, float alfa){
             aux = 0;
         }
 
-        printf("\naux = %d\n",aux);
+        //printf("\naux = %d\n",aux);
         if(aux > 1){
             j = rand() % (aux-1);
         }else{
             j = 0;
         }
-        printf("\n j = %d",j);
+        //printf("\n j = %d",j);
 
-        printf("\nnumero = %d",numero);
+        //printf("\nnumero = %d",numero);
 
         vertice = remove_elemento(numero, solucaoTemp, j);
         if(numero > 0){
@@ -314,15 +314,16 @@ void GRASP(struct matriz x, int* solucaoInicial, int max, int* solucaoFinal){
 
     for(int i = 0; i < max; i++){
         construcaoLCR(x, solucaoInicial, 0.5);
-        printf("\nSolucao Grasp = ");
-        imprimir_percurso(x.numero_elementos+1, solucaoInicial);
+        //printf("\nSolucao Grasp = ");
+        //imprimir_percurso(x.numero_elementos+1, solucaoInicial);
         custo_ref = custo(x, solucaoInicial);
-        printf("\n Custo = %d\n", custo_ref);
-        /*ImplementarVND(m,solucao_inicial,solucao_final);
-        custo_referencia = custo(m,solucao_final);
-        if(custo_referencia < valor_referencia){
-            valor_referencia = custo_referencia;
-            solucao_final = solucao_final;
+        //printf("\n Custo = %d\n", custo_ref);
+
+        /*VND(x, solucaoInicial); 
+        custo_ref = custo(x, solucaoInicial); 
+        if(custo_ref < valor_ref){ 
+            valor_ref = custo_ref; 
+            copia_percurso(x, solucaoInicial, solucaoFinal);
         }*/
     }
 }
