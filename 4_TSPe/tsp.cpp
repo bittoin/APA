@@ -11,24 +11,26 @@ int main(void){
 	//ifstream arquivo("instancias/pcv04.txt", ios::in);
 	//ifstream arquivo("instancias/pcv10.txt", ios::in);
 	//ifstream arquivo("instancias/pcv20.txt", ios::in);
-	ifstream arquivo("instancias/pcv50.txt", ios::in);
+	//ifstream arquivo("instancias/pcv50.txt", ios::in);
 
 		//--Instâncias com o triangulo superior--
-	//ifstream arquivo("instancias/brazil58.tsp", ios::in);
 	//ifstream arquivo("instancias/si175.tsp", ios::in);
 	//ifstream arquivo("instancias/si535.tsp", ios::in);
 	//ifstream arquivo("instancias/si1032.tsp", ios::in);
 
-		//--Instâncias com o triangulo inferior--
-	//ifstream arquivo("instancias/swiss42.tsp", ios::in);
-	//ifstream arquivo("instancias/brg180.tsp", ios::in);
-	//ifstream arquivo("instancias/dantzig42.tsp", ios::in);
-	//ifstream arquivo("instancias/fri26.tsp", ios::in); //nao adicionada ainda
-	//ifstream arquivo("instancias/gr17.tsp", ios::in); //nao adicionada ainda
-	//ifstream arquivo("instancias/gr21.tsp", ios::in); //nao adicionada ainda
-	//ifstream arquivo("instancias/gr24.tsp", ios::in); //nao adicionada ainda
-	//ifstream arquivo("instancias/gr48.tsp", ios::in); //nao adicionada ainda
-	//ifstream arquivo("instancias/gr96.tsp", ios::in); //nao adicionada ainda
+	/*
+	 * --Instâncias com a matriz completa--
+	 * Encontrados em https://people.sc.fsu.edu/~jburkardt/datasets/tsp/tsp.html
+	 */
+	//ifstream arquivo("inst/att48_d.txt", ios::in);
+	//ifstream arquivo("inst/dantzig42_d.txt", ios::in);
+	//ifstream arquivo("inst/five_d.txt", ios::in);
+	//ifstream arquivo("inst/fri26_d.txt", ios::in);
+	//ifstream arquivo("inst/gr17_d.txt", ios::in);
+	//ifstream arquivo("instancias/brazil58.txt", ios::in);
+	ifstream arquivo("inst/p01_d.txt", ios::in);
+	
+	
 	
 	string temp;
 
@@ -74,6 +76,6 @@ int main(void){
 	vizinho(x, solucao, 0);
 	
 	VND(x, solucao);
-	GRASP(x, solucao, x.numero_elementos, solucaoFinal);
+	GRASP(x, x.numero_elementos);
 	//imprimir_matriz(x);
 }
